@@ -10,6 +10,7 @@ export default function DayListItem(props) {
   })
 
   const formatSpots = number => {
+    // eslint-disable-next-line
     let formattedText
     if(number === 1){
       return formattedText = `${number} spot remaining`
