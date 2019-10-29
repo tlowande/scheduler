@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import "components/Application.scss";
 import DayList from "./DayList";
 import Appointment from "./appointment/index";
+import getAppointmentsForDay from "../helpers/selectors";
 import axios from "axios";
 
 // const days = [
@@ -23,60 +24,72 @@ import axios from "axios";
 //   },
 // ];
 
-const appointments = [
-  {
-    id: 4,
-    time: "10am",
-  },
-  {
-    id: 1,
-    time: "12pm",
-  },
-  {
-    id: 2,
-    time: "1pm",
-    interview: {
-      student: "Lydia Miller-Jones",
-      interviewer: {
-        id: 1,
-        name: "Sylvia Palmer",
-        avatar: "https://i.imgur.com/LpaY82x.png",
-      }
-    }
-  },
-  {
-    id: 3,
-    time: "4pm",
-    interview: {
-      student: "Lydia Miller-Jones",
-      interviewer: {
-        id: 2,
-        name: "Tori Malcolm",
-        avatar: "https://i.imgur.com/Nmx0Qxo.png"
-      }
-    }
-  },
-];
+// const appointments = [
+//   {
+//     id: 4,
+//     time: "10am",
+//   },
+//   {
+//     id: 1,
+//     time: "12pm",
+//   },
+//   {
+//     id: 2,
+//     time: "1pm",
+//     interview: {
+//       student: "Lydia Miller-Jones",
+//       interviewer: {
+//         id: 1,
+//         name: "Sylvia Palmer",
+//         avatar: "https://i.imgur.com/LpaY82x.png",
+//       }
+//     }
+//   },
+//   {
+//     id: 3,
+//     time: "4pm",
+//     interview: {
+//       student: "Lydia Miller-Jones",
+//       interviewer: {
+//         id: 2,
+//         name: "Tori Malcolm",
+//         avatar: "https://i.imgur.com/Nmx0Qxo.png"
+//       }
+//     }
+//   },
+// ];
 
 
 export default function Application(props) {
-  const [state, setState] = useState({
+  let [state, setState] = useState({
     day: "Monday",
     days: [],
     appointments: {},
   })
   
+  const appointments = getAppointmentsForDay(state, state.day)
   const setDay = day => setState(prev => ({ ...prev, day }));
-  const setDays = days => setState(prev => ({ ...prev, days }));
+  // const setDays = days => setState(prev => ({ ...prev, days }));
 
   useEffect(() => {
-    axios
-      .get("http://localhost:8001/api/days")
-      .then(resp => setDays(resp.data)) //setState({...state, days: resp.data})) 
+    axios.all([
+      axios.get("http://localhost:8001/api/days"),
+      axios.get("http://localhost:8001/api/appointments")
+    ])
+      .then((all) => {
+        setState(prev => ({
+          ...prev,
+          days: all[0].data,
+          appointments: all[1].data
+        }))
+      })
+
+      // .then(resp => setDays(resp.data)) //setState({...state, days: resp.data})) 
+      // .then(setTimeout(() => console.log(state), 4000))
       .catch((error) => {
-        // console.log(error.response.status);
-        // console.log(error.response.headers);
-        // console.log(error.response.data);
+        console.log(error.response.status);
+        console.log(error.response.headers);
+        console.log(error.response.data);
       });
   }, [])
 
