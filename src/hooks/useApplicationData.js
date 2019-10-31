@@ -20,10 +20,12 @@ export default function useApplicationData() {
       case SET_DAY:
         return { ...state, day: action.value }
       case SET_APPLICATION_DATA:
-        console.log("set-application type")
         return { ...state, ...action.value }
       case SET_INTERVIEW: {
         return { ...state, appointments: action.value }
+      }
+      case "SET_SPOTS": {
+        return { ...state, days: action.value }
       }
       default:
         throw new Error(
@@ -124,6 +126,13 @@ export default function useApplicationData() {
         })
       })
   }
+
+  useEffect(() => {
+    axios.get("http://localhost:8001/api/days")
+    .then(resp => {
+      dispatch({ type:"SET_SPOTS", value: resp.data })
+    })
+  }, [state.appointments])
 
   return {
     state,
