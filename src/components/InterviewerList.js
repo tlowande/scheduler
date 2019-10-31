@@ -14,7 +14,7 @@ export default function InterviewerList(props) {
         props.onChange(person.id)
       }} />)
   })
-
+ 
   return (
     <section className="interviewers">
       <h4 className="interviewers__header text--light">Interviewer</h4>
