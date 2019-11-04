@@ -1,6 +1,6 @@
 
 
-import React, { useState, useEffect, useReducer } from "react";
+import { useEffect, useReducer } from "react";
 
 //--------------------------------
 
@@ -68,9 +68,9 @@ export default function useApplicationData() {
     // .then(resp => setDays(resp.data)) //setState({...state, days: resp.data})) 
     // .then(setTimeout(() => console.log(state), 4000))
     .catch((error) => {
-      console.log(error.response.status);
-      console.log(error.response.headers);
-      console.log(error.response.data);
+      console.error(error.response.status);
+      console.error(error.response.headers);
+      console.error(error.response.data);
     });
   }, [])
   // console.log('state in useApp is', state)
