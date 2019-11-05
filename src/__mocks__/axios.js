@@ -56,13 +56,19 @@ const fixtures = {
 export default {
   // defaults: { baseURL: "" },
 
+  delete: jest.fn(url => {
+    return Promise.resolve({
+      status: 204,
+      statusText: "No Content"
+    });
+  }),
   put: jest.fn(url => {
     return Promise.resolve({
       status: 204,
       statusText: "No Content"
     });
   }),
-
+  
   get: jest.fn(url => {
 
     if (url === "http://localhost:8001/api/days") {
