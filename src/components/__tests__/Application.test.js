@@ -71,7 +71,7 @@ describe("Application", () => {
       queryByText(day, "Monday")
     );
 
-    // expect(getByText(day, "1 spot remaining")).toBeInTheDocument();
+    expect(getByText(day, "no spots remaining")).toBeInTheDocument();
 
     // debug()
     // console.log(prettyDOM(day))
@@ -109,7 +109,7 @@ describe("Application", () => {
     );
     // debug()
     // console.log(prettyDOM(day))
-    // expect(getByText(day, "2 spot remaining")).toBeInTheDocument();
+    expect(getByText(day, "2 spots remaining")).toBeInTheDocument();
   });
 
   //--------------------------------
@@ -148,7 +148,7 @@ describe("Application", () => {
     );
     // debug()
     // console.log(prettyDOM(day))
-    // expect(getByText(day, "1 spot remaining")).toBeInTheDocument();
+    expect(getByText(day, "1 spot remaining")).toBeInTheDocument();
 
   })
 

@@ -14,9 +14,18 @@ import axios from "axios";
 
 export default function useApplicationData() {
 
-  
 
-  
+  const checkDay = (id) => {
+    let dayID = null;
+    for (const obj of state.days) {
+      if (obj.appointments.includes(id)) {
+        dayID = obj.id;
+      }
+    }
+    return dayID;
+  }
+
+
   // let [state, setState] = useState({
   //   day: "Monday",
   //   days: [],
@@ -70,7 +79,7 @@ export default function useApplicationData() {
 
   //-------------
 
-  function bookInterview(id, interview) {
+  function bookInterview(id, interview, create = false) {
     return axios.put(`http://localhost:8001/api/appointments/${id}`, { interview })
       .then(resp => {
         const intvw = { ...interview };
@@ -85,9 +94,15 @@ export default function useApplicationData() {
           [id]: appointment
         };
 
+
+        const days = state.days.map(day => {
+          return (create ? day.id === checkDay(id) ? { ...day, spots: day.spots - 1 } : { ...day } : { ...day })
+        });
+
         dispatch({
           type: "SET_INTERVIEW",
-          value: appointments
+          appointments,
+          days
         })
       })
   }
@@ -106,27 +121,32 @@ export default function useApplicationData() {
           [id]: interview
         };
 
+        const days = state.days.map(day => {
+          return (day.id === checkDay(id) ? { ...day, spots: day.spots + 1 } : { ...day } )
+        });
+
         dispatch({
           type: "SET_INTERVIEW",
-          value: appointments
+          appointments,
+          days
         })
       })
   }
 
-  useEffect(() => {
+  // useEffect(() => {
 
-    async function fetchData() {
-      let resp = await axios.get("http://localhost:8001/api/days");
-      dispatch({ type: "SET_SPOTS", value: resp.data })
-    }
+  //   async function fetchData() {
+  //     let resp = await axios.get("http://localhost:8001/api/days");
+  //     dispatch({ type: "SET_SPOTS", value: resp.data })
+  //   }
 
-    fetchData();
-    // axios.get("http://localhost:8001/api/days")
-    //   .then(resp => {
-    //     console.log(resp.data)
-    //     dispatch({ type: "SET_SPOTS", value: resp.data })
-    //   })
-  }, [state.appointments])
+  //   fetchData();
+  //   // axios.get("http://localhost:8001/api/days")
+  //   //   .then(resp => {
+  //   //     console.log(resp.data)
+  //   //     dispatch({ type: "SET_SPOTS", value: resp.data })
+  //   //   })
+  // }, [state.appointments])
 
   return {
     state,

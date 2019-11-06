@@ -10,11 +10,11 @@ export default function reducer(state, action) {
     case SET_APPLICATION_DATA:
       return { ...state, ...action.value }
     case SET_INTERVIEW: {
-      return { ...state, appointments: action.value }
+      return { ...state, appointments: action.appointments, days: action.days }
     }
-    case "SET_SPOTS": {
-      return { ...state, days: action.value }
-    }
+    // case "SET_SPOTS": {
+    //   return { ...state, days: action.value }
+    // }
     default:
       throw new Error(
         `Tried to reduce with unsupported action type: ${action.type}`
