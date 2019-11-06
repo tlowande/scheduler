@@ -45,10 +45,9 @@ describe("Application", () => {
     const { container, debug } = render(<Application />)
 
     await waitForElement(() => getByText(container, "Archie Cohen"))
-    // console.log(prettyDOM(container))
 
     const appointments = getAllByTestId(container, "appointment");
-    // console.log(prettyDOM(appointments));
+
     const appointment = appointments[0]
 
     fireEvent.click(getByAltText(appointment, "Add"));
@@ -72,9 +71,6 @@ describe("Application", () => {
     );
 
     expect(getByText(day, "no spots remaining")).toBeInTheDocument();
-
-    // debug()
-    // console.log(prettyDOM(day))
   })
 
   //--------------------------------
@@ -107,8 +103,7 @@ describe("Application", () => {
     const day = getAllByTestId(container, "day").find(day =>
       queryByText(day, "Monday")
     );
-    // debug()
-    // console.log(prettyDOM(day))
+
     expect(getByText(day, "2 spots remaining")).toBeInTheDocument();
   });
 
@@ -146,10 +141,8 @@ describe("Application", () => {
     const day = getAllByTestId(container, "day").find(day =>
       queryByText(day, "Monday")
     );
-    // debug()
-    // console.log(prettyDOM(day))
-    expect(getByText(day, "1 spot remaining")).toBeInTheDocument();
 
+    expect(getByText(day, "1 spot remaining")).toBeInTheDocument();
   })
 
   //--------------------------------
@@ -181,9 +174,9 @@ describe("Application", () => {
     expect(getByText(appointment, "Saving")).toBeInTheDocument();
 
     await waitForElement(() => getByText(container, "Error"));
-    
+
     fireEvent.click(getByAltText(appointment, "Close"));
-    
+
     expect(getByDisplayValue(appointment, "Archie Cohen")).toBeInTheDocument();
   });
 
@@ -215,10 +208,8 @@ describe("Application", () => {
     await waitForElement(() => getByText(appointment, "Error"));
 
     fireEvent.click(getByAltText(appointment, "Close"));
-    
-    expect(getByText(appointment, "Archie Cohen")).toBeInTheDocument();
-    // console.log(prettyDOM(container))
 
+    expect(getByText(appointment, "Archie Cohen")).toBeInTheDocument();
   })
 
 }) 

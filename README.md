@@ -31,8 +31,18 @@ npm run storybook
 
 
 ## Final Product
+#### *Scheduler single page view*
 
 !["Scheduler single page view"](./docs/mainpage.png)
+
+#### *Adding a new appointment*
+
 !["Adding a new appointment"](./docs/add-new.png)
+
+#### *Deleting an existing appointment*
+
 !["Deleting an existing appointment"](./docs/delete-confirmation.png)
+
+#### *Delete process after confirmation*
+
 !["Delete process after confirmation"](./docs/deleting-status.png)

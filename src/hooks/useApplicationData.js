@@ -59,16 +59,12 @@ export default function useApplicationData() {
 
         })
       })
-
-      // .then(resp => setDays(resp.data)) //setState({...state, days: resp.data})) 
-      // .then(setTimeout(() => console.log(state), 4000))
       .catch((error) => {
         console.error(error.response.status);
         console.error(error.response.headers);
         console.error(error.response.data);
       });
   }, [])
-  // console.log('state in useApp is', state)
 
   //-------------
 
@@ -122,7 +118,7 @@ export default function useApplicationData() {
         };
 
         const days = state.days.map(day => {
-          return (day.id === checkDay(id) ? { ...day, spots: day.spots + 1 } : { ...day } )
+          return (day.id === checkDay(id) ? { ...day, spots: day.spots + 1 } : { ...day })
         });
 
         dispatch({
@@ -143,7 +139,6 @@ export default function useApplicationData() {
   //   fetchData();
   //   // axios.get("http://localhost:8001/api/days")
   //   //   .then(resp => {
-  //   //     console.log(resp.data)
   //   //     dispatch({ type: "SET_SPOTS", value: resp.data })
   //   //   })
   // }, [state.appointments])
