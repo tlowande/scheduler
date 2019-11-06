@@ -8,7 +8,7 @@ Install dependencies with `npm install`.
 
 ### Running API Server
  
-Fork and follow the [Scheduler API](https://github.com/lighthouse-labs/scheduler-api) README
+Fork [Scheduler API](https://github.com/lighthouse-labs/scheduler-api) and follow the README.md file!
 
 
 ### Running Webpack Development Server
@@ -35,4 +35,4 @@ npm run storybook
 !["Scheduler single page view"](./docs/mainpage.png)
 !["Adding a new appointment"](./docs/add-new.png)
 !["Deleting an existing appointment"](./docs/delete-confirmation.png)
-!["Delete process after confirmation"](./docs/delete-status.png)
+!["Delete process after confirmation"](./docs/deleting-status.png)
