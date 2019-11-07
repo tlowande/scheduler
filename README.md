@@ -4,12 +4,11 @@ Interview Scheduler is a web application for educational purposes built with Rea
 
 ## Setup
 
-Install dependencies with `npm install`. 
+Install dependencies with `npm install`.
 
 ### Running API Server
- 
-Fork [Scheduler API](https://github.com/lighthouse-labs/scheduler-api) and follow the README.md file!
 
+Fork [Scheduler API](https://github.com/lighthouse-labs/scheduler-api) and follow the README.md file!
 
 ### Running Webpack Development Server
 
@@ -29,20 +28,20 @@ npm test
 npm run storybook
 ```
 
-
 ## Final Product
-#### *Scheduler single page view*
 
-!["Scheduler single page view"](./docs/mainpage.png)
+#### _Scheduler single page view_
 
-#### *Adding a new appointment*
+!["Scheduler single page view"](./docs/Scheduler.gif)
+
+#### _Adding a new appointment_
 
 !["Adding a new appointment"](./docs/add-new.png)
 
-#### *Deleting an existing appointment*
+#### _Deleting an existing appointment_
 
 !["Deleting an existing appointment"](./docs/delete-confirmation.png)
 
-#### *Delete process after confirmation*
+#### _Delete process after confirmation_
 
 !["Delete process after confirmation"](./docs/deleting-status.png)
