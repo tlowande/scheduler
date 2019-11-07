@@ -34,14 +34,3 @@ npm run storybook
 
 !["Scheduler single page view"](./docs/Scheduler.gif)
 
-#### _Adding a new appointment_
-
-!["Adding a new appointment"](./docs/add-new.png)
-
-#### _Deleting an existing appointment_
-
-!["Deleting an existing appointment"](./docs/delete-confirmation.png)
-
-#### _Delete process after confirmation_
-
-!["Delete process after confirmation"](./docs/deleting-status.png)
