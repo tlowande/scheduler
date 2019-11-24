@@ -1,11 +1,10 @@
 
 function getAppointmentsForDay(state, day) {
-  const filteredDay = state.days.filter(d => d.name === day);
-  const dayAppointments = filteredDay[0]
-  if (dayAppointments === undefined || dayAppointments.length === 0) {
+  const filteredDay = state.days.find(d => d.name === day);
+  if (filteredDay === undefined) {
     return []
   } else {
-    const detailedAppointments = dayAppointments.appointments.map(id => state.appointments[id])
+    const detailedAppointments = filteredDay.appointments.map(id => state.appointments[id])
     return detailedAppointments
   }
 }
